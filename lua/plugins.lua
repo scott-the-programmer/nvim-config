@@ -1,5 +1,3 @@
-
-
 return require("packer").startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
@@ -10,6 +8,11 @@ return require("packer").startup(function(use)
 	-- Handy tools
 	use("nvim-treesitter/nvim-treesitter")
 	use("folke/which-key.nvim")
+	use ({
+  		'nvim-telescope/telescope.nvim', tag = '0.1.0',
+		requires = { {'nvim-lua/plenary.nvim'} }
+
+	})
 
 	-- Cosmetic
 	use("EdenEast/nightfox.nvim")
@@ -38,6 +41,9 @@ return require("packer").startup(function(use)
 		   	require("nvim-tree").setup()
 		end,
 	})
+
+	-- Lazygit
+	use('kdheepak/lazygit.nvim')
 
 	-- Golang
 	use({
