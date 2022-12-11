@@ -2,9 +2,6 @@ return require("packer").startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
 
-	-- Improve startup time
-	use("lewis6991/impatient.nvim")
-
 	-- Handy tools
 	use("nvim-treesitter/nvim-treesitter")
 	use("folke/which-key.nvim")
@@ -53,6 +50,9 @@ return require("packer").startup(function(use)
 		end,
 		requires="nvim-treesitter/nvim-treesitter"
 	})
+
+	-- Terraform
+	use('hashivim/vim-terraform')
 
 	-- Coc
 	use ("OmniSharp/omnisharp-vim")
