@@ -52,20 +52,20 @@ require('packer').startup(function(use)
 
   use 'navarasu/onedark.nvim'
 
-  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
+  use 'nvim-lualine/lualine.nvim'           -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
-  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-  use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
+  use 'numToStr/Comment.nvim'               -- "gc" to comment visual regions/lines
+  use 'tpope/vim-sleuth'                    -- Detect tabstop and shiftwidth automatically
 
-      -- File tree
+  -- File tree
   use({
-      'kyazdani42/nvim-tree.lua',
-      requires = {'kyazdani42/nvim-web-devicons' -- optional, for file icons
-      },
-      tag = 'nightly', -- optional, updated every week. (see issue #1193)
-      config = function()
-          require("nvim-tree").setup()
-      end
+    'kyazdani42/nvim-tree.lua',
+    requires = { 'kyazdani42/nvim-web-devicons'  -- optional, for file icons
+    },
+    tag = 'nightly',                             -- optional, updated every week. (see issue #1193)
+    config = function()
+      require("nvim-tree").setup()
+    end
   })
 
   -- Lazygit
@@ -146,7 +146,7 @@ vim.cmd [[colorscheme onedark]]
 vim.o.completeopt = 'menuone,noselect'
 
 require('onedark').setup {
-    style = 'deep'
+  style = 'deep'
 }
 require('onedark').load()
 
@@ -243,6 +243,7 @@ vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 map("n", "<Leader>ot", ":NvimTreeToggle<CR>")
 map("n", "<Leader>gg", ":LazyGit<CR>")
+map("n", "<Leader>ff", ":Format<CR>")
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
