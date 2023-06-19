@@ -244,6 +244,8 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 map("n", "<Leader>ot", ":NvimTreeToggle<CR>")
 map("n", "<Leader>gg", ":LazyGit<CR>")
 map("n", "<Leader>ff", ":Format<CR>")
+map("n", "<Leader>tp", ":!terraform plan<CR>")
+map("n", "<Leader>ti", ":!terraform init<CR>")
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
