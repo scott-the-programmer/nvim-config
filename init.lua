@@ -57,12 +57,17 @@ require('packer').startup(function(use)
   use 'numToStr/Comment.nvim'               -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth'                    -- Detect tabstop and shiftwidth automatically
 
+  use { 'nvim-orgmode/orgmode', config = function()
+    require('orgmode').setup {}
+  end
+  }
+
   -- File tree
   use({
     'kyazdani42/nvim-tree.lua',
-    requires = { 'kyazdani42/nvim-web-devicons'  -- optional, for file icons
+    requires = { 'kyazdani42/nvim-web-devicons' -- optional, for file icons
     },
-    tag = 'nightly',                             -- optional, updated every week. (see issue #1193)
+    tag = 'nightly',                            -- optional, updated every week. (see issue #1193)
     config = function()
       require("nvim-tree").setup()
     end
@@ -71,7 +76,7 @@ require('packer').startup(function(use)
   -- Lazygit
   use('kdheepak/lazygit.nvim')
 
-  -- Fuzzy Finder (files, lsp, etc)
+  -- Fuzzy Finder (files, lsp, etcforce_destroy)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
@@ -313,6 +318,12 @@ require('nvim-treesitter.configs').setup {
     },
   },
 }
+
+require('orgmode').setup_ts_grammar()
+require('orgmode').setup({
+  org_agenda_files = { '~/.org/*' },
+  org_default_notes_file = '~/.org/refile.org',
+})
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
