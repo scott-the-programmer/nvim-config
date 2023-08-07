@@ -60,24 +60,39 @@ require('packer').startup(function(use)
     after = 'nvim-treesitter',
   }
 
+
   -- Git related plugins
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
 
-  use 'navarasu/onedark.nvim' -- Theme inspired by Atom
-  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
-  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'navarasu/onedark.nvim'               -- Theme inspired by Atom
   use 'nvim-lualine/lualine.nvim'           -- Fancier statusline
-  use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim'               -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth'                    -- Detect tabstop and shiftwidth automatically
   use { 'nvim-orgmode/orgmode', config = function()
     require('orgmode').setup {}
   end
   }
+
+  use 'mfussenegger/nvim-dap'
+  use 'rcarriga/nvim-dap-ui'
+
+
+  -- Dart/Flutter
+  use 'dart-lang/dart-vim-plugin'
+  use {
+    'akinsho/flutter-tools.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'stevearc/dressing.nvim',   -- optional for vim.ui.select
+    },
+  }
+  use 'thosakwe/vim-flutter'
+  use 'natebosch/vim-lsc'
+  use 'natebosch/vim-lsc-dart'
+
   -- File tree
   use({
     'kyazdani42/nvim-tree.lua',
@@ -210,6 +225,8 @@ require('lualine').setup {
 
 -- Enable Comment.nvim
 require('Comment').setup()
+require("dapui").setup()
+require("flutter-tools").setup()
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
