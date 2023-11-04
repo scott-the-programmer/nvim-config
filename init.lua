@@ -76,6 +76,7 @@ require('packer').startup(function(use)
   }
 
   use 'mfussenegger/nvim-dap'
+  use 'leoluz/nvim-dap-go'
   use 'rcarriga/nvim-dap-ui'
 
 
@@ -251,6 +252,18 @@ require('telescope').setup {
 }
 
 require('nvim-tree').setup()
+require('dap-go').setup()
+
+local dap, dapui = require("dap"), require("dapui")
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close()
+end
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
