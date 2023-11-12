@@ -51,10 +51,6 @@ require('packer').startup(function(use)
   use 'nvim-lualine/lualine.nvim'
   use 'numToStr/Comment.nvim'
   use 'tpope/vim-sleuth'
-  use { 'nvim-orgmode/orgmode', config = function()
-    require('orgmode').setup {}
-  end
-  }
 
   use 'mfussenegger/nvim-dap'
   use 'leoluz/nvim-dap-go'
@@ -77,7 +73,6 @@ require('packer').startup(function(use)
       require("nvim-tree").setup()
     end
   })
-
   use('kdheepak/lazygit.nvim')
 
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
@@ -91,19 +86,7 @@ require('packer').startup(function(use)
     plugins(use)
   end
 
-  if is_bootstrap then
-    require('packer').sync()
-  end
 end)
-
-if is_bootstrap then
-  print '=================================='
-  print '    Plugins are being installed'
-  print '    Wait until Packer completes,'
-  print '       then restart nvim'
-  print '=================================='
-  return
-end
 
 local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
@@ -126,12 +109,9 @@ require('lualine').setup {
   },
 }
 
-
 require('Comment').setup()
 require("dapui").setup()
 require("flutter-tools").setup()
-
-
 
 require('gitsigns').setup {
   signs = {
@@ -142,8 +122,6 @@ require('gitsigns').setup {
     changedelete = { text = '~' },
   },
 }
-
-
 
 require('telescope').setup {
   defaults = {
@@ -224,10 +202,3 @@ require('nvim-treesitter.configs').setup {
     },
   },
 }
-
-require('orgmode').setup_ts_grammar()
-require('orgmode').setup({
-  org_agenda_files = { '~/.org/*' },
-  org_default_notes_file = '~/.org/refile.org',
-})
-
