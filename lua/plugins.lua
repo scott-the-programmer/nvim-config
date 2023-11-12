@@ -3,7 +3,7 @@ require('packer').startup(function(use)
 
   use { 'alexghergh/nvim-tmux-navigation', config = function()
     require 'nvim-tmux-navigation'.setup {
-      disable_when_zoomed = true, 
+      disable_when_zoomed = true,
       keybindings = {
         left = "<C-h>",
         down = "<C-j>",
@@ -16,7 +16,7 @@ require('packer').startup(function(use)
   end
   }
 
-  use { 
+  use {
     'neovim/nvim-lspconfig',
     requires = {
       'williamboman/mason.nvim',
@@ -26,19 +26,19 @@ require('packer').startup(function(use)
     },
   }
 
-  use { 
+  use {
     'hrsh7th/nvim-cmp',
     requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   }
 
-  use { 
+  use {
     'nvim-treesitter/nvim-treesitter',
     run = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
   }
 
-  use { 
+  use {
     'nvim-treesitter/nvim-treesitter-textobjects',
     after = 'nvim-treesitter',
   }
@@ -47,10 +47,10 @@ require('packer').startup(function(use)
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
 
-  use 'navarasu/onedark.nvim'     
-  use 'nvim-lualine/lualine.nvim' 
-  use 'numToStr/Comment.nvim'     
-  use 'tpope/vim-sleuth'          
+  use 'navarasu/onedark.nvim'
+  use 'nvim-lualine/lualine.nvim'
+  use 'numToStr/Comment.nvim'
+  use 'tpope/vim-sleuth'
   use { 'nvim-orgmode/orgmode', config = function()
     require('orgmode').setup {}
   end
@@ -60,40 +60,32 @@ require('packer').startup(function(use)
   use 'leoluz/nvim-dap-go'
   use 'rcarriga/nvim-dap-ui'
 
-
-  
   use {
     'akinsho/flutter-tools.nvim',
     requires = {
       'nvim-lua/plenary.nvim',
-      'stevearc/dressing.nvim', 
+      'stevearc/dressing.nvim',
     },
   }
 
-  
   use({
     'kyazdani42/nvim-tree.lua',
-    requires = { 'kyazdani42/nvim-web-devicons' 
+    requires = { 'kyazdani42/nvim-web-devicons'
     },
-    tag = 'nightly',                            
+    tag = 'nightly',
     config = function()
       require("nvim-tree").setup()
     end
   })
 
-  
   use('kdheepak/lazygit.nvim')
 
-  
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
 
-  
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
-  
   use { "github/copilot.vim" }
 
-  
   local has_plugins, plugins = pcall(require, 'custom.plugins')
   if has_plugins then
     plugins(use)
@@ -104,10 +96,6 @@ require('packer').startup(function(use)
   end
 end)
 
-
-
---
-
 if is_bootstrap then
   print '=================================='
   print '    Plugins are being installed'
@@ -116,7 +104,6 @@ if is_bootstrap then
   print '=================================='
   return
 end
-
 
 local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
@@ -175,13 +162,10 @@ require('neodev').setup()
 require('mason').setup()
 require('fidget').setup()
 
-
 pcall(require('telescope').load_extension, 'fzf')
 
-
-
 require('nvim-treesitter.configs').setup {
-  
+
   ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'vimdoc', 'vim' },
 
   highlight = { enable = true },
@@ -198,9 +182,9 @@ require('nvim-treesitter.configs').setup {
   textobjects = {
     select = {
       enable = true,
-      lookahead = true, 
+      lookahead = true,
       keymaps = {
-        
+
         ['aa'] = '@parameter.outer',
         ['ia'] = '@parameter.inner',
         ['af'] = '@function.outer',
@@ -211,7 +195,7 @@ require('nvim-treesitter.configs').setup {
     },
     move = {
       enable = true,
-      set_jumps = true, 
+      set_jumps = true,
       goto_next_start = {
         [']m'] = '@function.outer',
         [']]'] = '@class.outer',
@@ -246,3 +230,4 @@ require('orgmode').setup({
   org_agenda_files = { '~/.org/*' },
   org_default_notes_file = '~/.org/refile.org',
 })
+
