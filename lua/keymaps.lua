@@ -1,7 +1,10 @@
 local map = require("map").map
 
+vim.o.clipboard='unnamedplus'
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.wo.relativenumber = true
 
 vim.o.hlsearch = false
 
