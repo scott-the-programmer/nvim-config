@@ -51,6 +51,7 @@ require('packer').startup(function(use)
   use 'nvim-lualine/lualine.nvim'
   use 'numToStr/Comment.nvim'
   use 'tpope/vim-sleuth'
+  use 'yamatsum/nvim-cursorline'
 
   use 'mfussenegger/nvim-dap'
   use 'leoluz/nvim-dap-go'
@@ -139,6 +140,18 @@ require('dap-go').setup()
 require('neodev').setup()
 require('mason').setup()
 require('fidget').setup()
+require('nvim-cursorline').setup {
+  cursorline = {
+    enable = true,
+    timeout = 1000,
+    number = false,
+  },
+  cursorword = {
+    enable = true,
+    min_length = 3,
+    hl = { underline = true },
+  }
+}
 
 pcall(require('telescope').load_extension, 'fzf')
 
