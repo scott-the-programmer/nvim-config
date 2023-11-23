@@ -46,12 +46,21 @@ require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
+  use 'f-person/git-blame.nvim'
 
   use 'navarasu/onedark.nvim'
   use 'nvim-lualine/lualine.nvim'
   use 'numToStr/Comment.nvim'
   use 'tpope/vim-sleuth'
   use 'yamatsum/nvim-cursorline'
+  use {
+    'nvimdev/dashboard-nvim',
+    event = 'VimEnter',
+    config = function()
+      require('dashboard').setup{}
+    end,
+    requires = { 'nvim-tree/nvim-web-devicons' }
+  }
 
   use 'mfussenegger/nvim-dap'
   use 'leoluz/nvim-dap-go'
@@ -86,7 +95,6 @@ require('packer').startup(function(use)
   if has_plugins then
     plugins(use)
   end
-
 end)
 
 local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
@@ -152,6 +160,9 @@ require('nvim-cursorline').setup {
     hl = { underline = true },
   }
 }
+require('gitblame').setup {
+    enabled = false,
+}
 
 pcall(require('telescope').load_extension, 'fzf')
 
@@ -175,7 +186,6 @@ require('nvim-treesitter.configs').setup {
       enable = true,
       lookahead = true,
       keymaps = {
-
         ['aa'] = '@parameter.outer',
         ['ia'] = '@parameter.inner',
         ['af'] = '@function.outer',
