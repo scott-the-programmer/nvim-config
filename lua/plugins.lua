@@ -53,11 +53,12 @@ require('packer').startup(function(use)
   use 'numToStr/Comment.nvim'
   use 'tpope/vim-sleuth'
   use 'yamatsum/nvim-cursorline'
+  use 'romgrk/barbar.nvim'
   use {
     'nvimdev/dashboard-nvim',
     event = 'VimEnter',
     config = function()
-      require('dashboard').setup{}
+      require('dashboard').setup {}
     end,
     requires = { 'nvim-tree/nvim-web-devicons' }
   }
@@ -120,7 +121,7 @@ require('lualine').setup {
 
 require('Comment').setup()
 require("dapui").setup()
-require("flutter-tools").setup()
+require("flutter-tools").setup({})
 
 require('gitsigns').setup {
   signs = {
@@ -161,7 +162,7 @@ require('nvim-cursorline').setup {
   }
 }
 require('gitblame').setup {
-    enabled = false,
+  enabled = false,
 }
 
 pcall(require('telescope').load_extension, 'fzf')
