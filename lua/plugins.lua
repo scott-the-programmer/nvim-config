@@ -21,7 +21,6 @@ require('packer').startup(function(use)
     requires = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      'j-hui/fidget.nvim',
       'folke/neodev.nvim',
     },
   }
@@ -148,7 +147,6 @@ require('nvim-tree').setup()
 require('dap-go').setup()
 require('neodev').setup()
 require('mason').setup()
-require('fidget').setup()
 require('nvim-cursorline').setup {
   cursorline = {
     enable = true,
