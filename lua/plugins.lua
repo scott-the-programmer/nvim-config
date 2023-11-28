@@ -47,7 +47,6 @@ require('packer').startup(function(use)
   use 'lewis6991/gitsigns.nvim'
   use 'f-person/git-blame.nvim'
 
-  use 'navarasu/onedark.nvim'
   use 'nvim-lualine/lualine.nvim'
   use 'numToStr/Comment.nvim'
   use 'tpope/vim-sleuth'
@@ -104,15 +103,9 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = vim.fn.expand '$MYVIMRC',
 })
 
-require('onedark').setup {
-  style = 'deep'
-}
-require('onedark').load()
-
 require('lualine').setup {
   options = {
     icons_enabled = false,
-    theme = 'onedark',
     component_separators = '|',
     section_separators = '',
   },
