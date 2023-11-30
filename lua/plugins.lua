@@ -44,6 +44,8 @@ use { 'alexghergh/nvim-tmux-navigation', config = function()
 
   use { "catppuccin/nvim", as = "catppuccin" }
 
+  use 'xiyaowong/transparent.nvim'
+
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
