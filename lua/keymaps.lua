@@ -1,6 +1,6 @@
 local map = require("map").map
 
-vim.o.clipboard='unnamedplus'
+vim.o.clipboard = 'unnamedplus'
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -131,17 +131,17 @@ map('n', '<A-,>', '<Cmd>BufferPrevious<CR>')
 map('n', '<A-.>', '<Cmd>BufferNext<CR>')
 map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>')
 map('n', '<A->>', '<Cmd>BufferMoveNext<CR>')
-map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>' )
-map('n', '<A-2>', '<Cmd>BufferGoto 2<CR>' )
-map('n', '<A-3>', '<Cmd>BufferGoto 3<CR>' )
+map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>')
+map('n', '<A-2>', '<Cmd>BufferGoto 2<CR>')
+map('n', '<A-3>', '<Cmd>BufferGoto 3<CR>')
 map('n', '<A-4>', '<Cmd>BufferGoto 4<CR>')
-map('n', '<A-5>', '<Cmd>BufferGoto 5<CR>' )
-map('n', '<A-6>', '<Cmd>BufferGoto 6<CR>' )
-map('n', '<A-7>', '<Cmd>BufferGoto 7<CR>' )
-map('n', '<A-8>', '<Cmd>BufferGoto 8<CR>' )
-map('n', '<A-9>', '<Cmd>BufferGoto 9<CR>' )
-map('n', '<A-0>', '<Cmd>BufferLast<CR>' )
-map('n', '<A-p>', '<Cmd>BufferPin<CR>' )
+map('n', '<A-5>', '<Cmd>BufferGoto 5<CR>')
+map('n', '<A-6>', '<Cmd>BufferGoto 6<CR>')
+map('n', '<A-7>', '<Cmd>BufferGoto 7<CR>')
+map('n', '<A-8>', '<Cmd>BufferGoto 8<CR>')
+map('n', '<A-9>', '<Cmd>BufferGoto 9<CR>')
+map('n', '<A-0>', '<Cmd>BufferLast<CR>')
+map('n', '<A-p>', '<Cmd>BufferPin<CR>')
 map('n', '<A-c>', '<Cmd>BufferClose<CR>')
 map('n', '<C-p>', '<Cmd>BufferPick<CR>')
 map('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>')
