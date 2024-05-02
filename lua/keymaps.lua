@@ -61,6 +61,7 @@ map("n", "<Leader>ot", ":NvimTreeToggle<CR>")
 map("n", "<Leader>gg", ":LazyGit<CR>")
 map("n", "<Leader>nf", ":NvimTreeFindFile<CR>")
 map("n", "<Leader>tp", ":!terraform plan<CR>")
+map("n", "<Leader>ta", ":!terraform apply --auto-approve<CR>")
 map("n", "<Leader>ti", ":!terraform init<CR>")
 map("n", "<Leader>mt", ":!make test<CR>")
 
