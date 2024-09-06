@@ -1,126 +1,138 @@
-require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
-  use { 'alexghergh/nvim-tmux-navigation', config = function()
-    require 'nvim-tmux-navigation'.setup {
-      disable_when_zoomed = true,
-      keybindings = {
-        left = "<C-h>",
-        down = "<C-j>",
-        up = "<C-k>",
-        right = "<C-l>",
-        last_active = "<C-\\>",
-        next = "<C-Space>",
-      }
-    }
-  end
-  }
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
-  use {
+require("lazy").setup({
+  "folke/lazy.nvim",
+
+  {
+    "alexghergh/nvim-tmux-navigation",
+    config = function()
+      require('nvim-tmux-navigation').setup {
+        disable_when_zoomed = true,
+        keybindings = {
+          left = "<C-h>",
+          down = "<C-j>",
+          up = "<C-k>",
+          right = "<C-l>",
+          last_active = "<C-\\>",
+          next = "<C-Space>",
+        }
+      }
+    end
+  },
+
+  {
     'neovim/nvim-lspconfig',
-    requires = {
+    dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'folke/neodev.nvim',
     },
-  }
+  },
 
-  use {
+  {
     'hrsh7th/nvim-cmp',
-    requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
-  }
+    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+  },
 
-  use {
+  {
     'nvim-treesitter/nvim-treesitter',
-    run = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end,
-  }
+    build = ':TSUpdate',
+  },
 
-  use {
+  {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    after = 'nvim-treesitter',
-  }
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  },
 
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
-  use { "catppuccin/nvim", as = "catppuccin" }
+  'xiyaowong/transparent.nvim',
 
-  use 'xiyaowong/transparent.nvim'
+  'tpope/vim-fugitive',
+  'tpope/vim-rhubarb',
+  'lewis6991/gitsigns.nvim',
+  'f-person/git-blame.nvim',
 
-  use 'tpope/vim-fugitive'
-  use 'tpope/vim-rhubarb'
-  use 'lewis6991/gitsigns.nvim'
-  use 'f-person/git-blame.nvim'
+  'nvim-lualine/lualine.nvim',
+  'numToStr/Comment.nvim',
+  'tpope/vim-sleuth',
+  'yamatsum/nvim-cursorline',
+  'romgrk/barbar.nvim',
 
-  use 'nvim-lualine/lualine.nvim'
-  use 'numToStr/Comment.nvim'
-  use 'tpope/vim-sleuth'
-  use 'yamatsum/nvim-cursorline'
-  use 'romgrk/barbar.nvim'
-  use {
+  {
     'nvimdev/dashboard-nvim',
     event = 'VimEnter',
     config = function()
       require('dashboard').setup {}
     end,
-    requires = { 'nvim-tree/nvim-web-devicons' }
-  }
+    dependencies = { 'nvim-tree/nvim-web-devicons' }
+  },
 
-  use 'mfussenegger/nvim-dap'
-  use 'leoluz/nvim-dap-go'
-  use 'rcarriga/nvim-dap-ui'
-  use 'nvim-neotest/nvim-nio'
+  'mfussenegger/nvim-dap',
+  'leoluz/nvim-dap-go',
+  'rcarriga/nvim-dap-ui',
+  'nvim-neotest/nvim-nio',
 
-  use {
+  {
     'akinsho/flutter-tools.nvim',
-    requires = {
+    dependencies = {
       'nvim-lua/plenary.nvim',
       'stevearc/dressing.nvim',
     },
-  }
+  },
 
-  use({
+  {
     'kyazdani42/nvim-tree.lua',
-    requires = { 'kyazdani42/nvim-web-devicons'
-    },
-    tag = 'nightly',
+    dependencies = { 'kyazdani42/nvim-web-devicons' },
     config = function()
       require("nvim-tree").setup()
     end
-  })
-  use('kdheepak/lazygit.nvim')
+  },
 
-  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
+  'kdheepak/lazygit.nvim',
 
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+  {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  },
 
-  use { "github/copilot.vim" }
+  {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    build = 'make',
+    cond = function()
+      return vim.fn.executable 'make' == 1
+    end
+  },
 
-  use({
+  "github/copilot.vim",
+
+  {
     "jackMort/ChatGPT.nvim",
     config = function()
       require("chatgpt").setup()
     end,
-    requires = {
+    dependencies = {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
       "folke/trouble.nvim",
       "nvim-telescope/telescope.nvim"
     }
-  })
-
-  local has_plugins, plugins = pcall(require, 'custom.plugins')
-  if has_plugins then
-    plugins(use)
-  end
-end)
-
-local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePost', {
-  command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
-  group = packer_group,
-  pattern = vim.fn.expand '$MYVIMRC',
+  },
 })
 
+-- Plugin configurations
 require('lualine').setup {
   options = {
     icons_enabled = false,
@@ -177,9 +189,7 @@ require('gitblame').setup {
 pcall(require('telescope').load_extension, 'fzf')
 
 require('nvim-treesitter.configs').setup {
-
   ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'vimdoc', 'vim' },
-
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
   incremental_selection = {
@@ -237,26 +247,24 @@ require('nvim-treesitter.configs').setup {
 }
 
 require("catppuccin").setup({
-  flavour = "mocha", -- latte, frappe, macchiato, mocha
+  flavour = "mocha",
   background = {
-    -- :h background
     light = "latte",
     dark = "mocha",
   },
-  transparent_background = true, -- disables setting the background color.
-  show_end_of_buffer = false,    -- shows the '~' characters after the end of buffers
-  term_colors = false,           -- sets terminal colors (e.g. `g:terminal_color_0`)
+  transparent_background = true,
+  show_end_of_buffer = false,
+  term_colors = false,
   dim_inactive = {
-    enabled = false,             -- dims the background color of inactive window
+    enabled = false,
     shade = "dark",
-    percentage = 0.15,           -- percentage of the shade to apply to the inactive window
+    percentage = 0.15,
   },
-  no_italic = false,             -- Force no italic
-  no_bold = false,               -- Force no bold
-  no_underline = false,          -- Force no underline
+  no_italic = false,
+  no_bold = false,
+  no_underline = false,
   styles = {
-    -- Handles the styles of general hi groups (see `:h highlight-args`):
-    comments = { "italic" }, -- Change the style of comments
+    comments = { "italic" },
     conditionals = { "italic" },
     loops = {},
     functions = {},
@@ -283,5 +291,3 @@ require("catppuccin").setup({
     },
   },
 })
-
-vim.cmd.colorscheme "catppuccin"
