@@ -119,19 +119,6 @@ require("lazy").setup({
   "github/copilot.vim",
 
   {
-    "jackMort/ChatGPT.nvim",
-    config = function()
-      require("chatgpt").setup()
-    end,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "folke/trouble.nvim",
-      "nvim-telescope/telescope.nvim"
-    }
-  },
-
-  {
     "yetone/avante.nvim",
     event = "VeryLazy",
     lazy = false,
