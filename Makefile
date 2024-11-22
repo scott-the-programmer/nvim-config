@@ -1,5 +1,6 @@
-.PHONY: write
-write:
-	rm -rf ~/.config/nvim
-	mkdir ~/.config/nvim
-	cp -r * ~/.config/nvim
+.PHONY: link unlink
+link:
+	ln -sf $(PWD) $(HOME)/.config/nvim
+
+unlink:
+	rm -f $(HOME)/.config/nvim
